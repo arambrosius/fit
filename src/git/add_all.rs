@@ -1,5 +1,7 @@
 use std::process::Command;
 
+use super::runner::run_git_command;
+
 pub(crate) fn add_all() {
     let output = Command::new("git")
         .arg("add")
@@ -7,5 +9,6 @@ pub(crate) fn add_all() {
         .output()
         .expect("failed to execute addAll");
 
-    println!("{:?}", output.stdout)
+    let result = run_git_command(output);
+    println!("{}", result);
 }
